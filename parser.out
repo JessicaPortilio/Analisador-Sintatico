@@ -1,0 +1,594 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> listadecomandos
+Rule 2     listadecomandos -> comando
+Rule 3     listadecomandos -> listadecomandos comando
+Rule 4     comando -> VAR ID ATRIBUICAO expressao PONTOEVIRGULA
+Rule 5     comando -> ID ATRIBUICAO expressao PONTOEVIRGULA
+Rule 6     comando -> IF expressao THEN listadecomandos ELSE listadecomandos ENDIF
+Rule 7     comando -> WHILE expressao DO listadecomandos ENDWHILE
+Rule 8     expressao -> expressao MAIS expressao
+Rule 9     expressao -> expressao MENOS expressao
+Rule 10    expressao -> expressao VEZES expressao
+Rule 11    expressao -> expressao DIVIDE expressao
+Rule 12    expressao -> ID
+Rule 13    expressao -> NUMERO
+
+Terminals, with rules where they appear
+
+ATRIBUICAO           : 4 5
+DIVIDE               : 11
+DO                   : 7
+ELSE                 : 6
+ENDIF                : 6
+ENDWHILE             : 7
+ID                   : 4 5 12
+IF                   : 6
+MAIS                 : 8
+MENOS                : 9
+NUMERO               : 13
+PONTOEVIRGULA        : 4 5
+THEN                 : 6
+VAR                  : 4
+VEZES                : 10
+WHILE                : 7
+error                : 
+
+Nonterminals, with rules where they appear
+
+comando              : 2 3
+expressao            : 4 5 6 7 8 8 9 9 10 10 11 11
+listadecomandos      : 1 3 6 6 7
+programa             : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . listadecomandos
+    (2) listadecomandos -> . comando
+    (3) listadecomandos -> . listadecomandos comando
+    (4) comando -> . VAR ID ATRIBUICAO expressao PONTOEVIRGULA
+    (5) comando -> . ID ATRIBUICAO expressao PONTOEVIRGULA
+    (6) comando -> . IF expressao THEN listadecomandos ELSE listadecomandos ENDIF
+    (7) comando -> . WHILE expressao DO listadecomandos ENDWHILE
+
+    VAR             shift and go to state 4
+    ID              shift and go to state 5
+    IF              shift and go to state 6
+    WHILE           shift and go to state 7
+
+    programa                       shift and go to state 1
+    listadecomandos                shift and go to state 2
+    comando                        shift and go to state 3
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> listadecomandos .
+    (3) listadecomandos -> listadecomandos . comando
+    (4) comando -> . VAR ID ATRIBUICAO expressao PONTOEVIRGULA
+    (5) comando -> . ID ATRIBUICAO expressao PONTOEVIRGULA
+    (6) comando -> . IF expressao THEN listadecomandos ELSE listadecomandos ENDIF
+    (7) comando -> . WHILE expressao DO listadecomandos ENDWHILE
+
+    $end            reduce using rule 1 (programa -> listadecomandos .)
+    VAR             shift and go to state 4
+    ID              shift and go to state 5
+    IF              shift and go to state 6
+    WHILE           shift and go to state 7
+
+    comando                        shift and go to state 8
+
+state 3
+
+    (2) listadecomandos -> comando .
+
+    VAR             reduce using rule 2 (listadecomandos -> comando .)
+    ID              reduce using rule 2 (listadecomandos -> comando .)
+    IF              reduce using rule 2 (listadecomandos -> comando .)
+    WHILE           reduce using rule 2 (listadecomandos -> comando .)
+    $end            reduce using rule 2 (listadecomandos -> comando .)
+    ELSE            reduce using rule 2 (listadecomandos -> comando .)
+    ENDWHILE        reduce using rule 2 (listadecomandos -> comando .)
+    ENDIF           reduce using rule 2 (listadecomandos -> comando .)
+
+
+state 4
+
+    (4) comando -> VAR . ID ATRIBUICAO expressao PONTOEVIRGULA
+
+    ID              shift and go to state 9
+
+
+state 5
+
+    (5) comando -> ID . ATRIBUICAO expressao PONTOEVIRGULA
+
+    ATRIBUICAO      shift and go to state 10
+
+
+state 6
+
+    (6) comando -> IF . expressao THEN listadecomandos ELSE listadecomandos ENDIF
+    (8) expressao -> . expressao MAIS expressao
+    (9) expressao -> . expressao MENOS expressao
+    (10) expressao -> . expressao VEZES expressao
+    (11) expressao -> . expressao DIVIDE expressao
+    (12) expressao -> . ID
+    (13) expressao -> . NUMERO
+
+    ID              shift and go to state 12
+    NUMERO          shift and go to state 13
+
+    expressao                      shift and go to state 11
+
+state 7
+
+    (7) comando -> WHILE . expressao DO listadecomandos ENDWHILE
+    (8) expressao -> . expressao MAIS expressao
+    (9) expressao -> . expressao MENOS expressao
+    (10) expressao -> . expressao VEZES expressao
+    (11) expressao -> . expressao DIVIDE expressao
+    (12) expressao -> . ID
+    (13) expressao -> . NUMERO
+
+    ID              shift and go to state 12
+    NUMERO          shift and go to state 13
+
+    expressao                      shift and go to state 14
+
+state 8
+
+    (3) listadecomandos -> listadecomandos comando .
+
+    VAR             reduce using rule 3 (listadecomandos -> listadecomandos comando .)
+    ID              reduce using rule 3 (listadecomandos -> listadecomandos comando .)
+    IF              reduce using rule 3 (listadecomandos -> listadecomandos comando .)
+    WHILE           reduce using rule 3 (listadecomandos -> listadecomandos comando .)
+    $end            reduce using rule 3 (listadecomandos -> listadecomandos comando .)
+    ELSE            reduce using rule 3 (listadecomandos -> listadecomandos comando .)
+    ENDWHILE        reduce using rule 3 (listadecomandos -> listadecomandos comando .)
+    ENDIF           reduce using rule 3 (listadecomandos -> listadecomandos comando .)
+
+
+state 9
+
+    (4) comando -> VAR ID . ATRIBUICAO expressao PONTOEVIRGULA
+
+    ATRIBUICAO      shift and go to state 15
+
+
+state 10
+
+    (5) comando -> ID ATRIBUICAO . expressao PONTOEVIRGULA
+    (8) expressao -> . expressao MAIS expressao
+    (9) expressao -> . expressao MENOS expressao
+    (10) expressao -> . expressao VEZES expressao
+    (11) expressao -> . expressao DIVIDE expressao
+    (12) expressao -> . ID
+    (13) expressao -> . NUMERO
+
+    ID              shift and go to state 12
+    NUMERO          shift and go to state 13
+
+    expressao                      shift and go to state 16
+
+state 11
+
+    (6) comando -> IF expressao . THEN listadecomandos ELSE listadecomandos ENDIF
+    (8) expressao -> expressao . MAIS expressao
+    (9) expressao -> expressao . MENOS expressao
+    (10) expressao -> expressao . VEZES expressao
+    (11) expressao -> expressao . DIVIDE expressao
+
+    THEN            shift and go to state 17
+    MAIS            shift and go to state 18
+    MENOS           shift and go to state 19
+    VEZES           shift and go to state 20
+    DIVIDE          shift and go to state 21
+
+
+state 12
+
+    (12) expressao -> ID .
+
+    THEN            reduce using rule 12 (expressao -> ID .)
+    MAIS            reduce using rule 12 (expressao -> ID .)
+    MENOS           reduce using rule 12 (expressao -> ID .)
+    VEZES           reduce using rule 12 (expressao -> ID .)
+    DIVIDE          reduce using rule 12 (expressao -> ID .)
+    DO              reduce using rule 12 (expressao -> ID .)
+    PONTOEVIRGULA   reduce using rule 12 (expressao -> ID .)
+
+
+state 13
+
+    (13) expressao -> NUMERO .
+
+    THEN            reduce using rule 13 (expressao -> NUMERO .)
+    MAIS            reduce using rule 13 (expressao -> NUMERO .)
+    MENOS           reduce using rule 13 (expressao -> NUMERO .)
+    VEZES           reduce using rule 13 (expressao -> NUMERO .)
+    DIVIDE          reduce using rule 13 (expressao -> NUMERO .)
+    DO              reduce using rule 13 (expressao -> NUMERO .)
+    PONTOEVIRGULA   reduce using rule 13 (expressao -> NUMERO .)
+
+
+state 14
+
+    (7) comando -> WHILE expressao . DO listadecomandos ENDWHILE
+    (8) expressao -> expressao . MAIS expressao
+    (9) expressao -> expressao . MENOS expressao
+    (10) expressao -> expressao . VEZES expressao
+    (11) expressao -> expressao . DIVIDE expressao
+
+    DO              shift and go to state 22
+    MAIS            shift and go to state 18
+    MENOS           shift and go to state 19
+    VEZES           shift and go to state 20
+    DIVIDE          shift and go to state 21
+
+
+state 15
+
+    (4) comando -> VAR ID ATRIBUICAO . expressao PONTOEVIRGULA
+    (8) expressao -> . expressao MAIS expressao
+    (9) expressao -> . expressao MENOS expressao
+    (10) expressao -> . expressao VEZES expressao
+    (11) expressao -> . expressao DIVIDE expressao
+    (12) expressao -> . ID
+    (13) expressao -> . NUMERO
+
+    ID              shift and go to state 12
+    NUMERO          shift and go to state 13
+
+    expressao                      shift and go to state 23
+
+state 16
+
+    (5) comando -> ID ATRIBUICAO expressao . PONTOEVIRGULA
+    (8) expressao -> expressao . MAIS expressao
+    (9) expressao -> expressao . MENOS expressao
+    (10) expressao -> expressao . VEZES expressao
+    (11) expressao -> expressao . DIVIDE expressao
+
+    PONTOEVIRGULA   shift and go to state 24
+    MAIS            shift and go to state 18
+    MENOS           shift and go to state 19
+    VEZES           shift and go to state 20
+    DIVIDE          shift and go to state 21
+
+
+state 17
+
+    (6) comando -> IF expressao THEN . listadecomandos ELSE listadecomandos ENDIF
+    (2) listadecomandos -> . comando
+    (3) listadecomandos -> . listadecomandos comando
+    (4) comando -> . VAR ID ATRIBUICAO expressao PONTOEVIRGULA
+    (5) comando -> . ID ATRIBUICAO expressao PONTOEVIRGULA
+    (6) comando -> . IF expressao THEN listadecomandos ELSE listadecomandos ENDIF
+    (7) comando -> . WHILE expressao DO listadecomandos ENDWHILE
+
+    VAR             shift and go to state 4
+    ID              shift and go to state 5
+    IF              shift and go to state 6
+    WHILE           shift and go to state 7
+
+    listadecomandos                shift and go to state 25
+    comando                        shift and go to state 3
+
+state 18
+
+    (8) expressao -> expressao MAIS . expressao
+    (8) expressao -> . expressao MAIS expressao
+    (9) expressao -> . expressao MENOS expressao
+    (10) expressao -> . expressao VEZES expressao
+    (11) expressao -> . expressao DIVIDE expressao
+    (12) expressao -> . ID
+    (13) expressao -> . NUMERO
+
+    ID              shift and go to state 12
+    NUMERO          shift and go to state 13
+
+    expressao                      shift and go to state 26
+
+state 19
+
+    (9) expressao -> expressao MENOS . expressao
+    (8) expressao -> . expressao MAIS expressao
+    (9) expressao -> . expressao MENOS expressao
+    (10) expressao -> . expressao VEZES expressao
+    (11) expressao -> . expressao DIVIDE expressao
+    (12) expressao -> . ID
+    (13) expressao -> . NUMERO
+
+    ID              shift and go to state 12
+    NUMERO          shift and go to state 13
+
+    expressao                      shift and go to state 27
+
+state 20
+
+    (10) expressao -> expressao VEZES . expressao
+    (8) expressao -> . expressao MAIS expressao
+    (9) expressao -> . expressao MENOS expressao
+    (10) expressao -> . expressao VEZES expressao
+    (11) expressao -> . expressao DIVIDE expressao
+    (12) expressao -> . ID
+    (13) expressao -> . NUMERO
+
+    ID              shift and go to state 12
+    NUMERO          shift and go to state 13
+
+    expressao                      shift and go to state 28
+
+state 21
+
+    (11) expressao -> expressao DIVIDE . expressao
+    (8) expressao -> . expressao MAIS expressao
+    (9) expressao -> . expressao MENOS expressao
+    (10) expressao -> . expressao VEZES expressao
+    (11) expressao -> . expressao DIVIDE expressao
+    (12) expressao -> . ID
+    (13) expressao -> . NUMERO
+
+    ID              shift and go to state 12
+    NUMERO          shift and go to state 13
+
+    expressao                      shift and go to state 29
+
+state 22
+
+    (7) comando -> WHILE expressao DO . listadecomandos ENDWHILE
+    (2) listadecomandos -> . comando
+    (3) listadecomandos -> . listadecomandos comando
+    (4) comando -> . VAR ID ATRIBUICAO expressao PONTOEVIRGULA
+    (5) comando -> . ID ATRIBUICAO expressao PONTOEVIRGULA
+    (6) comando -> . IF expressao THEN listadecomandos ELSE listadecomandos ENDIF
+    (7) comando -> . WHILE expressao DO listadecomandos ENDWHILE
+
+    VAR             shift and go to state 4
+    ID              shift and go to state 5
+    IF              shift and go to state 6
+    WHILE           shift and go to state 7
+
+    listadecomandos                shift and go to state 30
+    comando                        shift and go to state 3
+
+state 23
+
+    (4) comando -> VAR ID ATRIBUICAO expressao . PONTOEVIRGULA
+    (8) expressao -> expressao . MAIS expressao
+    (9) expressao -> expressao . MENOS expressao
+    (10) expressao -> expressao . VEZES expressao
+    (11) expressao -> expressao . DIVIDE expressao
+
+    PONTOEVIRGULA   shift and go to state 31
+    MAIS            shift and go to state 18
+    MENOS           shift and go to state 19
+    VEZES           shift and go to state 20
+    DIVIDE          shift and go to state 21
+
+
+state 24
+
+    (5) comando -> ID ATRIBUICAO expressao PONTOEVIRGULA .
+
+    VAR             reduce using rule 5 (comando -> ID ATRIBUICAO expressao PONTOEVIRGULA .)
+    ID              reduce using rule 5 (comando -> ID ATRIBUICAO expressao PONTOEVIRGULA .)
+    IF              reduce using rule 5 (comando -> ID ATRIBUICAO expressao PONTOEVIRGULA .)
+    WHILE           reduce using rule 5 (comando -> ID ATRIBUICAO expressao PONTOEVIRGULA .)
+    $end            reduce using rule 5 (comando -> ID ATRIBUICAO expressao PONTOEVIRGULA .)
+    ELSE            reduce using rule 5 (comando -> ID ATRIBUICAO expressao PONTOEVIRGULA .)
+    ENDWHILE        reduce using rule 5 (comando -> ID ATRIBUICAO expressao PONTOEVIRGULA .)
+    ENDIF           reduce using rule 5 (comando -> ID ATRIBUICAO expressao PONTOEVIRGULA .)
+
+
+state 25
+
+    (6) comando -> IF expressao THEN listadecomandos . ELSE listadecomandos ENDIF
+    (3) listadecomandos -> listadecomandos . comando
+    (4) comando -> . VAR ID ATRIBUICAO expressao PONTOEVIRGULA
+    (5) comando -> . ID ATRIBUICAO expressao PONTOEVIRGULA
+    (6) comando -> . IF expressao THEN listadecomandos ELSE listadecomandos ENDIF
+    (7) comando -> . WHILE expressao DO listadecomandos ENDWHILE
+
+    ELSE            shift and go to state 32
+    VAR             shift and go to state 4
+    ID              shift and go to state 5
+    IF              shift and go to state 6
+    WHILE           shift and go to state 7
+
+    comando                        shift and go to state 8
+
+state 26
+
+    (8) expressao -> expressao MAIS expressao .
+    (8) expressao -> expressao . MAIS expressao
+    (9) expressao -> expressao . MENOS expressao
+    (10) expressao -> expressao . VEZES expressao
+    (11) expressao -> expressao . DIVIDE expressao
+
+    THEN            reduce using rule 8 (expressao -> expressao MAIS expressao .)
+    MAIS            reduce using rule 8 (expressao -> expressao MAIS expressao .)
+    MENOS           reduce using rule 8 (expressao -> expressao MAIS expressao .)
+    DO              reduce using rule 8 (expressao -> expressao MAIS expressao .)
+    PONTOEVIRGULA   reduce using rule 8 (expressao -> expressao MAIS expressao .)
+    VEZES           shift and go to state 20
+    DIVIDE          shift and go to state 21
+
+  ! VEZES           [ reduce using rule 8 (expressao -> expressao MAIS expressao .) ]
+  ! DIVIDE          [ reduce using rule 8 (expressao -> expressao MAIS expressao .) ]
+  ! MAIS            [ shift and go to state 18 ]
+  ! MENOS           [ shift and go to state 19 ]
+
+
+state 27
+
+    (9) expressao -> expressao MENOS expressao .
+    (8) expressao -> expressao . MAIS expressao
+    (9) expressao -> expressao . MENOS expressao
+    (10) expressao -> expressao . VEZES expressao
+    (11) expressao -> expressao . DIVIDE expressao
+
+    THEN            reduce using rule 9 (expressao -> expressao MENOS expressao .)
+    MAIS            reduce using rule 9 (expressao -> expressao MENOS expressao .)
+    MENOS           reduce using rule 9 (expressao -> expressao MENOS expressao .)
+    DO              reduce using rule 9 (expressao -> expressao MENOS expressao .)
+    PONTOEVIRGULA   reduce using rule 9 (expressao -> expressao MENOS expressao .)
+    VEZES           shift and go to state 20
+    DIVIDE          shift and go to state 21
+
+  ! VEZES           [ reduce using rule 9 (expressao -> expressao MENOS expressao .) ]
+  ! DIVIDE          [ reduce using rule 9 (expressao -> expressao MENOS expressao .) ]
+  ! MAIS            [ shift and go to state 18 ]
+  ! MENOS           [ shift and go to state 19 ]
+
+
+state 28
+
+    (10) expressao -> expressao VEZES expressao .
+    (8) expressao -> expressao . MAIS expressao
+    (9) expressao -> expressao . MENOS expressao
+    (10) expressao -> expressao . VEZES expressao
+    (11) expressao -> expressao . DIVIDE expressao
+
+    THEN            reduce using rule 10 (expressao -> expressao VEZES expressao .)
+    MAIS            reduce using rule 10 (expressao -> expressao VEZES expressao .)
+    MENOS           reduce using rule 10 (expressao -> expressao VEZES expressao .)
+    VEZES           reduce using rule 10 (expressao -> expressao VEZES expressao .)
+    DIVIDE          reduce using rule 10 (expressao -> expressao VEZES expressao .)
+    DO              reduce using rule 10 (expressao -> expressao VEZES expressao .)
+    PONTOEVIRGULA   reduce using rule 10 (expressao -> expressao VEZES expressao .)
+
+  ! MAIS            [ shift and go to state 18 ]
+  ! MENOS           [ shift and go to state 19 ]
+  ! VEZES           [ shift and go to state 20 ]
+  ! DIVIDE          [ shift and go to state 21 ]
+
+
+state 29
+
+    (11) expressao -> expressao DIVIDE expressao .
+    (8) expressao -> expressao . MAIS expressao
+    (9) expressao -> expressao . MENOS expressao
+    (10) expressao -> expressao . VEZES expressao
+    (11) expressao -> expressao . DIVIDE expressao
+
+    THEN            reduce using rule 11 (expressao -> expressao DIVIDE expressao .)
+    MAIS            reduce using rule 11 (expressao -> expressao DIVIDE expressao .)
+    MENOS           reduce using rule 11 (expressao -> expressao DIVIDE expressao .)
+    VEZES           reduce using rule 11 (expressao -> expressao DIVIDE expressao .)
+    DIVIDE          reduce using rule 11 (expressao -> expressao DIVIDE expressao .)
+    DO              reduce using rule 11 (expressao -> expressao DIVIDE expressao .)
+    PONTOEVIRGULA   reduce using rule 11 (expressao -> expressao DIVIDE expressao .)
+
+  ! MAIS            [ shift and go to state 18 ]
+  ! MENOS           [ shift and go to state 19 ]
+  ! VEZES           [ shift and go to state 20 ]
+  ! DIVIDE          [ shift and go to state 21 ]
+
+
+state 30
+
+    (7) comando -> WHILE expressao DO listadecomandos . ENDWHILE
+    (3) listadecomandos -> listadecomandos . comando
+    (4) comando -> . VAR ID ATRIBUICAO expressao PONTOEVIRGULA
+    (5) comando -> . ID ATRIBUICAO expressao PONTOEVIRGULA
+    (6) comando -> . IF expressao THEN listadecomandos ELSE listadecomandos ENDIF
+    (7) comando -> . WHILE expressao DO listadecomandos ENDWHILE
+
+    ENDWHILE        shift and go to state 33
+    VAR             shift and go to state 4
+    ID              shift and go to state 5
+    IF              shift and go to state 6
+    WHILE           shift and go to state 7
+
+    comando                        shift and go to state 8
+
+state 31
+
+    (4) comando -> VAR ID ATRIBUICAO expressao PONTOEVIRGULA .
+
+    VAR             reduce using rule 4 (comando -> VAR ID ATRIBUICAO expressao PONTOEVIRGULA .)
+    ID              reduce using rule 4 (comando -> VAR ID ATRIBUICAO expressao PONTOEVIRGULA .)
+    IF              reduce using rule 4 (comando -> VAR ID ATRIBUICAO expressao PONTOEVIRGULA .)
+    WHILE           reduce using rule 4 (comando -> VAR ID ATRIBUICAO expressao PONTOEVIRGULA .)
+    $end            reduce using rule 4 (comando -> VAR ID ATRIBUICAO expressao PONTOEVIRGULA .)
+    ELSE            reduce using rule 4 (comando -> VAR ID ATRIBUICAO expressao PONTOEVIRGULA .)
+    ENDWHILE        reduce using rule 4 (comando -> VAR ID ATRIBUICAO expressao PONTOEVIRGULA .)
+    ENDIF           reduce using rule 4 (comando -> VAR ID ATRIBUICAO expressao PONTOEVIRGULA .)
+
+
+state 32
+
+    (6) comando -> IF expressao THEN listadecomandos ELSE . listadecomandos ENDIF
+    (2) listadecomandos -> . comando
+    (3) listadecomandos -> . listadecomandos comando
+    (4) comando -> . VAR ID ATRIBUICAO expressao PONTOEVIRGULA
+    (5) comando -> . ID ATRIBUICAO expressao PONTOEVIRGULA
+    (6) comando -> . IF expressao THEN listadecomandos ELSE listadecomandos ENDIF
+    (7) comando -> . WHILE expressao DO listadecomandos ENDWHILE
+
+    VAR             shift and go to state 4
+    ID              shift and go to state 5
+    IF              shift and go to state 6
+    WHILE           shift and go to state 7
+
+    listadecomandos                shift and go to state 34
+    comando                        shift and go to state 3
+
+state 33
+
+    (7) comando -> WHILE expressao DO listadecomandos ENDWHILE .
+
+    VAR             reduce using rule 7 (comando -> WHILE expressao DO listadecomandos ENDWHILE .)
+    ID              reduce using rule 7 (comando -> WHILE expressao DO listadecomandos ENDWHILE .)
+    IF              reduce using rule 7 (comando -> WHILE expressao DO listadecomandos ENDWHILE .)
+    WHILE           reduce using rule 7 (comando -> WHILE expressao DO listadecomandos ENDWHILE .)
+    $end            reduce using rule 7 (comando -> WHILE expressao DO listadecomandos ENDWHILE .)
+    ELSE            reduce using rule 7 (comando -> WHILE expressao DO listadecomandos ENDWHILE .)
+    ENDWHILE        reduce using rule 7 (comando -> WHILE expressao DO listadecomandos ENDWHILE .)
+    ENDIF           reduce using rule 7 (comando -> WHILE expressao DO listadecomandos ENDWHILE .)
+
+
+state 34
+
+    (6) comando -> IF expressao THEN listadecomandos ELSE listadecomandos . ENDIF
+    (3) listadecomandos -> listadecomandos . comando
+    (4) comando -> . VAR ID ATRIBUICAO expressao PONTOEVIRGULA
+    (5) comando -> . ID ATRIBUICAO expressao PONTOEVIRGULA
+    (6) comando -> . IF expressao THEN listadecomandos ELSE listadecomandos ENDIF
+    (7) comando -> . WHILE expressao DO listadecomandos ENDWHILE
+
+    ENDIF           shift and go to state 35
+    VAR             shift and go to state 4
+    ID              shift and go to state 5
+    IF              shift and go to state 6
+    WHILE           shift and go to state 7
+
+    comando                        shift and go to state 8
+
+state 35
+
+    (6) comando -> IF expressao THEN listadecomandos ELSE listadecomandos ENDIF .
+
+    VAR             reduce using rule 6 (comando -> IF expressao THEN listadecomandos ELSE listadecomandos ENDIF .)
+    ID              reduce using rule 6 (comando -> IF expressao THEN listadecomandos ELSE listadecomandos ENDIF .)
+    IF              reduce using rule 6 (comando -> IF expressao THEN listadecomandos ELSE listadecomandos ENDIF .)
+    WHILE           reduce using rule 6 (comando -> IF expressao THEN listadecomandos ELSE listadecomandos ENDIF .)
+    $end            reduce using rule 6 (comando -> IF expressao THEN listadecomandos ELSE listadecomandos ENDIF .)
+    ELSE            reduce using rule 6 (comando -> IF expressao THEN listadecomandos ELSE listadecomandos ENDIF .)
+    ENDWHILE        reduce using rule 6 (comando -> IF expressao THEN listadecomandos ELSE listadecomandos ENDIF .)
+    ENDIF           reduce using rule 6 (comando -> IF expressao THEN listadecomandos ELSE listadecomandos ENDIF .)
+
